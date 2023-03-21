@@ -1,0 +1,30 @@
+{{!< default}}
+
+{{!-- The tag above means: insert everything in this file
+into the {body} tag of the default.hbs template --}}
+
+<main id="site-main" class="site-main outer tags-content-container">
+    <div class="inner posts">
+        <div class="post-feed">
+            <section class="gh-content post-card post-card-large">
+                <div class="post-card-content">
+                    <div class="post-card-content-link">
+                        <header class="post-card-header">
+                            <h2 class="post-card-title">Tags</h2>
+                        </header>
+                        <div class="post-card-excerpt">
+                            in {{#get "posts" limit="all"}} {{posts.length}} {{/get}} posts
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {{#get 'tags' limit='all' include='count.posts' order='count.posts desc'}}
+            {{#foreach tags}}
+                <a class="post-card tag-card-container" href="{{ url }}">
+                    <h2 class="post-card-title">{{ name }} ({{ count.posts }})</h2>
+                </a>
+            {{/foreach}}
+            {{/get}}
+        </div>
+    </div>
+</main>
